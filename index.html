@@ -88,73 +88,70 @@ h2.title{
 }
 #reveal.open{transform:translateY(-100%);opacity:0;pointer-events:none}
 ```css
-/* Elegant circular monogram */
+/* ---------- Wedding Logo on Opening Reveal ---------- */
+
 #reveal {
-  gap: 0;
+    gap: 0;
 }
 
+/* Logo container */
 #reveal .monogram-circle {
-  width: clamp(280px, 58vw, 400px);
-  aspect-ratio: 1 / 1;
-  border: 2px solid rgba(214, 181, 109, 0.20);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 60px;
+    width: clamp(340px, 65vw, 400px);
+    aspect-ratio: auto;
+
+    border: none;
+    border-radius: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 40px;
 }
 
-#reveal .mono {
-  font-family: var(--font-serif);
-  font-size: clamp(5rem, 16vw, 9rem);
-  font-weight: 400;
-  color: #E8B6A5;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  white-space: nowrap;
+/* Actual wedding logo */
+#reveal .reveal-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
-/* Style the ampersand separately */
-#reveal .mono .amp {
-  font-family: var(--font-script);
-  font-size: 0.55em;
-  color: #E6C568;
-  display: inline-block;
-  vertical-align: 0.05em;
-  margin: 0 0.04em;
-  letter-spacing: 0;
-}
+/* Invitation button */
 
-/* Refined invitation button */
 #reveal #open-btn {
-  background: transparent;
-  border: 1px solid #D8B0A0;
-  color: #D8B0A0;
-  border-radius: 0;
-  min-width: 340px;
-  padding: 20px 35px;
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  letter-spacing: 0.25em;
-  box-shadow: none;
+    background: transparent;
+    border: 1px solid #B8892E;
+    color: #C49A3A;
+
+    border-radius: 0;
+    min-width: 340px;
+    padding: 20px 20px;
+
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    letter-spacing: 0.50em;
+
+    box-shadow: none;
+    transition: all 0.35s ease;
 }
 
+/* Hover effect */
 #reveal #open-btn:hover {
-  background: rgba(214, 181, 109, 0.08);
-  transform: translateY(-2px);
-  box-shadow: none;
+    background: rgba(184, 137, 46, 0.15);
+    border-color: #D0A847;
+    color: #E0B957;
+
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(184, 137, 46, 0.18);
 }
 
+/* Mobile */
 @media (max-width: 480px) {
-  #reveal .monogram-circle {
-    width: 280px;
-    margin-bottom: 45px;
-  }
-
-  #reveal #open-btn {
-    min-width: 0;
-    width: min(340px, 85vw);
-  }
+    #reveal #open-btn {
+        min-width: 0;
+        width: min(340px, 85vw);
+    }
 }
 
 #reveal p{letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--lavender)}
@@ -272,21 +269,98 @@ nav a.link:hover{color:var(--gold);opacity:1}
 }
 
 /* ---------- Couple / Story ---------- */
-#couple{background:var(--royal)}
-.invite-text{max-width:680px;margin:0 auto 60px;text-align:center;font-family:var(--font-serif);font-size:1.35rem;color:var(--ivory)}
-.people{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-bottom:70px}
-.person{text-align:center}
-.avatar{
-  width:min(230px,60vw);aspect-ratio:1;border-radius:50%;margin:0 auto 18px;
-  border:3px solid var(--gold);padding:6px;background:var(--violet);
-}
-.avatar div,.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.avatar div{display:grid;place-items:center;font-family:var(--font-script);font-size:4rem;color:var(--gold);background:var(--plum)}
-.person h3{font-family:var(--font-serif);font-size:1.9rem;color:var(--gold);font-weight:600}
-.person .parents{color:var(--lavender);font-size:.95rem}
-.person .about{margin-top:10px;font-size:.95rem;opacity:.9}
-@media(max-width:640px){.people{grid-template-columns:1fr}}
 
+#couple {
+  /* Keep existing background */
+}
+
+.people{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:34px;
+  margin-bottom:0;
+}
+
+.person {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Circular photograph */
+.avatar {
+  width: min(230px, 60vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  border: 4px solid var(--gold);
+  padding: 6px;
+  background: var(--violet);
+  order: 0;
+}
+
+.avatar div,
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Bride / Groom label */
+.person .person-label {
+  order: 1;
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Name */
+.person h3 {
+  order: 2;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* Parents card */
+.person .parents {
+  order: 4;
+  width: 100%;
+  max-width: 350px;
+  padding: 20px 22px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(214,181,109,.2);
+  border-left: 4px solid var(--gold);
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0,0,0,.12);
+  color: var(--ivory);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* About */
+.person .about {
+  order: 5;
+  color: var(--lavender);
+  font-size: .9rem;
+  margin-top: 5px;
+}
+
+@media(max-width:640px) {
+  .people {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+}
 
 
 /* ---------- Events ---------- */
@@ -355,6 +429,18 @@ footer p{opacity:.75;font-size:.9rem}
   position:fixed;right:18px;bottom:18px;z-index:60;width:48px;height:48px;border-radius:50%;
   border:1px solid var(--gold);background:rgba(23,12,39,.85);color:var(--gold);font-size:1.2rem;cursor:pointer;
 }
+#music {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#music.playing {
+    animation: musicRotate 4s linear infinite;
+}
+
+@keyframes musicRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
 /* ---------- Scroll animations ---------- */
 .fade{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
@@ -363,6 +449,63 @@ footer p{opacity:.75;font-size:.9rem}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .fade{opacity:1;transform:none}
 }
+
+/* Center invitation message and increase spacing */
+
+#couple .invite-text {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto 90px !important;
+  text-align: center !important;
+
+  line-height: 1.9;
+  font-size: 1.15rem;
+  padding: 0 15px;
+}
+
+/* Mobile spacing */
+
+@media (max-width: 640px) {
+  #couple .invite-text {
+    margin-bottom: 65px !important;
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+}
+
+/* Event card container styling for bottom image alignment */
+.event {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden; /* Ensures image stays neatly clipped inside the card corner/bottom */
+  padding: 34px 26px 0; /* Padding adjusted to let the bottom artwork rest seamlessly at the base */
+}
+
+.event-content {
+  padding-bottom: 24px;
+}
+
+/* Bottom artwork container */
+.event-artwork {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.event-artwork img {
+  width: 100%;
+  max-width: 350px; /* Adjust size as needed */
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
 </style>
 </head>
 
@@ -370,9 +513,13 @@ footer p{opacity:.75;font-size:.9rem}
 
 <!-- Opening reveal -->
 <div id="reveal">
-  <div class="monogram-circle">
-    <div class="mono" id="reveal-mono"></div>
-  </div>
+<div class="monogram-circle">
+    <img
+        src="images/pj-wedding-logo-transparent.png"
+        alt="Jay and Payal Wedding Logo"
+        class="reveal-logo"
+    >
+</div>
   <p id="reveal-date" style="display:none"></p>
   <button class="btn" id="open-btn">Open Invitation</button>
 </div>
@@ -489,7 +636,7 @@ footer p{opacity:.75;font-size:.9rem}
 
       <div><label for="f-msg">Message for the couple</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
       <button type="submit" class="btn" style="justify-self:center">Send RSVP</button>
-      <p class="center" id="rsvp-deadline" style="font-size:.85rem;opacity:.75"></p>
+      <p class="center" id="rsvp-deadline" style="font-size:.90rem;opacity:.75"></p>
     </form>
 
     <div id="rsvp-ok">
@@ -518,9 +665,22 @@ const CONFIG = {
 
   /* ---- Couple ---- */
   couple: {
-    groom: { name: "Jay Khanvilkar", short: "Jay",   photo: "", parents: "Son of Late Mr Pravin Khanvilkar & Mrs Pooja Khanvilkar" },
-    bride: { name: "Payal Pathre",   short: "Payal", photo: "", parents: "Daughter of Mr Hemant Pathre & Mrs Manasi Pathre", about: "Sister of Miss Riddhi Pathre" }
+  bride: {
+    name: "Payal Pathre",
+    short: "Payal",
+    photo: "",
+    parents: "Daughter of Mr Hemant Pathre & Mrs Manasi Pathre",
+    about: "Sister of Miss Riddhi Pathre"
   },
+
+  groom: {
+    name: "Jay Khanvilkar",
+    short: "Jay",
+    photo: "",
+    parents: "Son of Mr Pravin Khanvilkar & Mrs Pooja Khanvilkar",
+    about: ""
+  }
+},
 
   /* ---- Date (ISO format, include timezone). PLACEHOLDER date. ---- */
   weddingDate: "2027-01-27T11:00:00+05:30",
@@ -553,24 +713,20 @@ nav: [
   /* ---- Couple section ---- */
   coupleSection: {
     eyebrow: "The Wedding Of",
-    title: "Payal & Jay",
+    title: "Jay & Payal",
     invitation: "With the blessings of our elders, we joyfully invite you to share in the celebration of our marriage. Your presence will make our day complete."
   },
 
   /* ---- Event itinerary (add / remove / reorder freely) ---- */
   events: [
-    { id: "engagement", icon: "\u{1F48D}", title: "Engagement",     date: "26 January 2027", time: "10:00 AM",
-      venue: "Shantai by The Lake", address: "Kondwadi, Guhagar", dress: "Festive attire",
-      description: "A joyful celebration marking the beginning of the wedding festivities.", mapUrl: "" },
-    { id: "haldi",      icon: "\u{1F33C}", title: "Haldi",   date: "26 January 2027", time: "4:00 PM",
-      venue: "Shantai by The Lake", address: "Kondwadi, Guhagar", dress: "Yellow & traditional",
-      description: "A joyful celebration with turmeric, blessings, music and laughter.", mapUrl: "" },
-    { id: "wedding",   icon: "\u{1F48D}", title: "Wedding",   date: "27 January 2027", time: "09:00 AM",
-      venue: "Shantai by The Lake", address: "Kondwadi, Guhagar", dress: "Traditional",
-      description: "The sacred ceremony followed by lunch.", mapUrl: "" },
+    { id: "engagement", icon: "\u{1F48D}", title: "Ishq Wala Sakharpuda",     date: "26 January 2027", time: "10:00 AM",
+      dress: "Festive attire", description: "A joyful celebration marking the beginning of the wedding festivities.", mapUrl: "", image: "images/engagement-artwork.png" },
+    { id: "haldi",      icon: "\u{1F33C}", title: "Phoolon Wali Haldi",   date: "26 January 2027", time: "4:00 PM",
+      dress: "Yellow & traditional", description: "A joyful celebration with turmeric, blessings, music and laughter.", mapUrl: "", image: "images/haldi-artwork.png" },
+    { id: "wedding",   icon: "\u{1F48D}", title: "Shubhmangal Saavdhaan",   date: "27 January 2027", time: "09:00 AM",
+      dress: "Traditional", description: "The sacred ceremony followed by lunch.", mapUrl: "", image: "images/wedding-artwork.png" },
     { id: "reception", icon: "\u2728",    title: "Reception", date: "27 January 2027", time: "2:00 PM",
-      venue: "Shantai by The Lake", address: "Kondwadi, Guhagar", dress: "Formal / cocktail",
-      description: "Dinner, dance and blessings for the newlyweds.", mapUrl: "" }
+      dress: "Formal / cocktail", description: "Dinner, dance and blessings for the newlyweds.", mapUrl: "", image: "images/reception-artwork-transparent.png" }
   ],
 
 
@@ -601,7 +757,9 @@ nav: [
   },
 
   /* ---- Music (optional; browsers need a click to play, handled by the Open button) ---- */
-  music: { src: "" },      // e.g. "audio/song.mp3"
+  music: {
+    src: "audio/wedding-song.mp3"
+	},
 
   /* ---- Footer ---- */
   footer: { note: "With love, the Pathre & Khanvilkar families" }
@@ -615,19 +773,11 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&l
 const C = CONFIG;
 
 /* Text & hero */
-document.title = `${C.couple.bride.short} & ${C.couple.groom.short} | Wedding Invitation`;
-/* Text & hero */
-document.title = `${C.couple.bride.short} & ${C.couple.groom.short} | Wedding Invitation`;
+document.title = `${C.couple.groom.short} and ${C.couple.bride.short} | Wedding Invitation`;
 
 // Plain-text initials for navigation and other sections
 const monogram =
-  C.couple.bride.short[0] + " & " + C.couple.groom.short[0];
-
-// Styled initials ONLY for the opening reveal
-$("#reveal-mono").innerHTML =
-  `<span class="initial">${C.couple.bride.short[0]}</span>` +
-  `<span class="amp">&amp;</span>` +
-  `<span class="initial">${C.couple.groom.short[0]}</span>`;
+    C.couple.groom.short[0] + " & " + C.couple.bride.short[0];
 
 // Keep the navigation logo as plain text
 $("#nav-logo").textContent = monogram;
@@ -638,7 +788,7 @@ $("#reveal-date").style.display = "none";
 // Homepage content
 $("#hero-pre").textContent = C.heroPre;
 $("#hero-names").innerHTML =
-  `${esc(C.couple.bride.short)}<span class="amp">&amp;</span>${esc(C.couple.groom.short)}`;
+  `${esc(C.couple.groom.short)}<span class="amp">and</span>${esc(C.couple.bride.short)}`;
 
 // Remove the wedding date from the homepage
 $("#hero-date").textContent = "";
@@ -652,7 +802,7 @@ if (C.heroImage) {
 $("#reveal-date").style.display = "none";
 $("#nav-logo").textContent = monogram;
 $("#hero-pre").textContent = C.heroPre;
-$("#hero-names").innerHTML = `${esc(C.couple.bride.short)}<span class="amp">&amp;</span>${esc(C.couple.groom.short)}`;
+$("#hero-names").innerHTML = `${esc(C.couple.groom.short)}<span class="amp">&amp;</span>${esc(C.couple.bride.short)}`;
 $("#hero-date").textContent = "";
 $("#hero-place").textContent = C.locationShort;
 if (C.heroImage) $("#home").style.setProperty("--hero-img", `url("${C.heroImage}")`);
@@ -775,54 +925,58 @@ $("#std-seal").onclick = () => {
 };
 
 /* Couple */
+
 $("#couple-eyebrow").textContent = C.coupleSection.eyebrow;
 $("#couple-title").textContent = C.coupleSection.title;
 $("#invite-text").textContent = C.coupleSection.invitation;
-$("#people").innerHTML = [C.couple.bride, C.couple.groom].map(p => `
+
+$("#people").innerHTML = [
+  { ...C.couple.bride, role: "The Bride" },
+  { ...C.couple.groom, role: "The Groom" }
+].map(p => `
   <div class="person">
-    <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">` : `<div>${esc(p.short[0])}</div>`}</div>
+
+    <p class="person-label">${esc(p.role)}</p>
+
     <h3>${esc(p.name)}</h3>
-    <div class="parents">${esc(p.parents)}</div>
-    <p class="about">${esc(p.about)}</p>
-  </div>`).join("");
+
+    <div class="parents">
+  	${esc(p.parents)}
+  	${p.about ? `<br><span>${esc(p.about)}</span>` : ""}
+    </div>
+
+   <div class="avatar">
+  	${p.photo
+    	? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">`
+    	: `<div>${esc(p.short[0])}</div>`
+  }
+</div>
+
+  </div>
+`).join("");
 
 /* Events */
 $("#event-grid").innerHTML = C.events.map(e => `
   <article class="event fade">
-    <div class="ico">${e.icon}</div>
-    <h3>${esc(e.title)}</h3>
-    <div class="when">${esc(e.date)}</div>
-    <div class="time">${esc(e.time)}</div>
-    <div class="venue">${esc(e.venue)}</div>
-    <div class="addr">${esc(e.address)}</div>
-    <p class="desc">${esc(e.description)}</p>
-    <div class="dress">Dress code: ${esc(e.dress)}</div>
-    <div class="actions">
-      ${e.mapUrl ? `<a class="btn ghost" href="${esc(e.mapUrl)}" target="_blank" rel="noopener">Map</a>` : ""}
-      <a class="btn ghost" href="#" data-cal="${esc(e.id)}">Add to calendar</a>
+    <div class="event-content">
+      <div class="ico">${e.icon}</div>
+      <h3>${esc(e.title)}</h3>
+      <div class="when">${esc(e.date)}</div>
+      <div class="time">${esc(e.time)}</div>
+      <div class="venue">${esc(e.venue)}</div>
+      <div class="addr">${esc(e.address)}</div>
+      <p class="desc">${esc(e.description)}</p>
+      <div class="dress">Dress code: ${esc(e.dress)}</div>
+      <div class="actions">
+  	${e.mapUrl ? `<a class="btn ghost" href="${esc(e.mapUrl)}" target="_blank" rel="noopener">Map</a>` : ""}
+</div>
     </div>
+    ${e.image ? `
+      <div class="event-artwork">
+        <img src="${esc(e.image)}" alt="${esc(e.title)} Illustration">
+      </div>
+    ` : ""}
   </article>`).join("");
-
-/* Add-to-calendar (.ics download) */
-function parseDateTime(dateStr, timeStr) {
-  const d = new Date(`${dateStr} ${timeStr}`);
-  return isNaN(d) ? new Date(C.weddingDate) : d;
-}
-const icsStamp = d => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-document.addEventListener("click", e => {
-  const a = e.target.closest("[data-cal]"); if (!a) return;
-  e.preventDefault();
-  const ev = C.events.find(x => x.id === a.dataset.cal);
-  const start = parseDateTime(ev.date, ev.time), end = new Date(start.getTime() + 3 * 3600e3);
-  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
-    `DTSTART:${icsStamp(start)}`,`DTEND:${icsStamp(end)}`,
-    `SUMMARY:${ev.title} - ${C.couple.groom.short} & ${C.couple.bride.short}`,
-    `LOCATION:${ev.venue}, ${ev.address}`,`DESCRIPTION:${ev.description}`,
-    "END:VEVENT","END:VCALENDAR"].join("\r\n");
-  const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
-  const l = document.createElement("a"); l.href = url; l.download = `${ev.id}.ics`; l.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-});
 
 /* Venue */
 $("#venue-name").textContent = C.venue.name;
@@ -920,18 +1074,42 @@ $("#rsvp-again").onclick = () => {
 };
 
 /* Music */
-const bgm = $("#bgm"), musicBtn = $("#music");
-if (C.music.src) bgm.src = C.music.src; else musicBtn.style.display = "none";
+const bgm = $("#bgm");
+const musicBtn = $("#music");
+
+if (C.music.src) {
+    bgm.src = C.music.src;
+    musicBtn.style.display = "grid";
+} else {
+    musicBtn.style.display = "none";
+}
+
 musicBtn.onclick = () => {
-  if (bgm.paused) { bgm.play().catch(() => {}); musicBtn.style.opacity = 1; }
-  else { bgm.pause(); musicBtn.style.opacity = .5; }
+    if (bgm.paused) {
+        bgm.play().then(() => {
+            musicBtn.classList.add("playing");
+            musicBtn.style.opacity = 1;
+        }).catch(() => {});
+    } else {
+        bgm.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.style.opacity = .5;
+    }
 };
 
 /* Opening reveal */
 $("#open-btn").onclick = () => {
-  $("#reveal").classList.add("open");
-  document.body.classList.remove("locked");
-  if (C.music.src) bgm.play().catch(() => {});
+
+    $("#reveal").classList.add("open");
+    document.body.classList.remove("locked");
+
+    if (C.music.src) {
+        bgm.play().then(() => {
+            musicBtn.classList.add("playing");
+            musicBtn.style.opacity = 1;
+        }).catch(() => {});
+    }
+
 };
 
 /* Scroll reveal */
